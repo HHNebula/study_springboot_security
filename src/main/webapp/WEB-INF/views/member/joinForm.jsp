@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <form class="form-signin" method="post" action="/login">
+        <form class="form-signin" method="post" action="/joinProc">
             <h2 class="form-signin-heading">Join Form</h2>
             <p>
                 <label for="username" class="sr-only">Username</label>
