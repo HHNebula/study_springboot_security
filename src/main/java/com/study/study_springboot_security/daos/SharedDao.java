@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SharedDao {
+
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
