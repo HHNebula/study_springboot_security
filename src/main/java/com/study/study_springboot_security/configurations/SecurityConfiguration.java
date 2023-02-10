@@ -7,16 +7,20 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
-    // @Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        // 권한에 대한 부분 : url & roles : user url & roles
+        // _csrf protection disabled
+        httpSecurity.csrf().disable();
+
+        // 권한에 대한 부분 : url & roles : user url & roles : 이 URL 은 이 Role 이야
         httpSecurity.authorizeRequests()
                 // .antMatchers("/").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/").authenticated() // 로그인 여부만 판단.
-                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+                // .antMatchers("/").authenticated() // 로그인 여부만 판단.
+                // .antMatchers("/admin").access("hasRole('ROLE_ADMIN')") // 권한 판단
+                .antMatchers("/admin").authenticated() // Admin 만 로그인 해야 함!
                 .anyRequest().permitAll(); // 설정한 URL 이외는 접근 가능.
 
-        // 로그인에 대한 부분
+        // 로그인에 대한 부분 : 로그인 루틴
         httpSecurity.formLogin().loginPage("/loginForm")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/");

@@ -15,9 +15,9 @@ public class MainController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
+            String username = ((UserDetails) principal).getUsername(); // 로그인 완료 시
         } else {
-            String username = principal.toString();
+            String username = principal.toString(); // 로그인 불가 시
         }
 
         String viewName = "/WEB-INF/views/main.jsp";

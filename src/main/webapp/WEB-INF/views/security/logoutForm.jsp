@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 
 <head>
@@ -15,7 +17,6 @@
     <div class="container">
         <form class="form-signin" method="post" action="/logout">
             <h2 class="form-signin-heading">Are you sure you want to log out?</h2>
-            <input name="_csrf" type="hidden" value="c8e24b19-06aa-4270-9994-637804dfec8b">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log Out</button>
         </form>
     </div>
