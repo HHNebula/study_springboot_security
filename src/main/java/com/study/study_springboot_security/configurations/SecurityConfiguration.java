@@ -18,11 +18,15 @@ public class SecurityConfiguration {
                 // .antMatchers("/").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 // .antMatchers("/").authenticated() // 로그인 여부만 판단.
                 // .antMatchers("/admin").access("hasRole('ROLE_ADMIN')") // 권한 판단
-                .antMatchers("/admin").authenticated() // Admin 만 로그인 해야 함!
+                .antMatchers("/user").authenticated() // Admin 만 로그인 해야 함!
+                .antMatchers("/manager/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')") // Manager + Admin
+                                                                                                      // 권한
+                .antMatchers("/admin/*").access("hasRole('ROLE_ADMIN')") // Admin 권한 만
                 .anyRequest().permitAll(); // 설정한 URL 이외는 접근 가능.
 
         // 로그인에 대한 부분 : 로그인 루틴
         httpSecurity.formLogin().loginPage("/loginForm")
+                .failureUrl("/loginForm?fail=true")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/");
 
